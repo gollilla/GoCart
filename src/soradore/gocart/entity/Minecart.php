@@ -43,8 +43,8 @@ class Minecart extends Vehicle{
 
     public function kill() : void{
         parent::kill();
-		foreach($this->getDrops() as $item){
-			$this->getLevel()->dropItem($this, $item);
+	foreach($this->getDrops() as $item){
+		$this->getLevel()->dropItem($this, $item);
         }
         $this->despawnFromAll();
     }
@@ -52,24 +52,24 @@ class Minecart extends Vehicle{
 
     public function setLink(Entity $rider){
         if($this->rider === null){
-			$rider->setDataFlag(self::DATA_FLAGS, self::DATA_FLAG_RIDING, true);
-			$rider->getDataPropertyManager()->setVector3(Entity::DATA_RIDER_SEAT_POSITION, new Vector3(0, 1, 0));
-			$pk = new SetActorLinkPacket();
-			$pk->link = new EntityLink($this->getId(), $rider->getId(), EntityLink::TYPE_RIDER);
+	    $rider->setDataFlag(self::DATA_FLAGS, self::DATA_FLAG_RIDING, true);
+	    $rider->getDataPropertyManager()->setVector3(Entity::DATA_RIDER_SEAT_POSITION, new Vector3(0, 1, 0));
+	    $pk = new SetActorLinkPacket();
+	    $pk->link = new EntityLink($this->getId(), $rider->getId(), EntityLink::TYPE_RIDER);
             Server::getInstance()->broadcastPacket($this->getViewers(), $pk);
-			$this->rider = $rider;
-			return true;
-		}else{
+	    $this->rider = $rider;
+	    return true;
+	}else{
             $rider->setDataFlag(self::DATA_FLAGS, self::DATA_FLAG_RIDING, false);
-			$rider->getDataPropertyManager()->setVector3(Entity::DATA_RIDER_SEAT_POSITION, new Vector3(0, 0, 0));
-			$pk = new SetActorLinkPacket();
-			$pk->link = new EntityLink($this->getId(), $rider->getId(), EntityLink::TYPE_REMOVE);
+	    $rider->getDataPropertyManager()->setVector3(Entity::DATA_RIDER_SEAT_POSITION, new Vector3(0, 0, 0));
+	    $pk = new SetActorLinkPacket();
+	    $pk->link = new EntityLink($this->getId(), $rider->getId(), EntityLink::TYPE_REMOVE);
             Server::getInstance()->broadcastPacket($this->getViewers(), $pk);
             $this->rider = null;
             
-			return true;
+	    return true;
         }
-		return false;
+	return false;
     }
 
     public function onUpdate(int $currentTick) : bool{

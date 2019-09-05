@@ -66,25 +66,12 @@ class GoCart extends PluginBase implements Listener{
 		$player = $ev->getPlayer();
 		if(isset($this->carts[$player->getName()]) && !$player->isOnGround()){
 			foreach($this->carts[$player->getName()] as $minecart){
-				//if($minecart->distance($player) > 1.5){
-                    $minecart->setLink($player);
-                    $minecart->kill();
-                //}
+				$minecart->setLink($player);
+				$minecart->kill();
 			}
 			unset($this->carts[$player->getName()]);
 		}
 	}
-
-	/*public function onRe(DataPacketReceiveEvent $ev){*/
-		/*$player = $ev->getPlayer();
-		$level = $player->getLevel();
-		foreach($level->getEntities() as $entity){
-			if($entity instanceof Minecart){
-				$entity->kill();
-			}
-		}*/
-		//var_dump($ev->getPacket());
-	//}
 
     
 }

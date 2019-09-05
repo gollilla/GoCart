@@ -43,29 +43,11 @@ class Minecart extends Vehicle{
 
     public function kill() : void{
         parent::kill();
-
-        if($this->lastDamageCause instanceof EntityDamageByEntityEvent){
-			$damager = $this->lastDamageCause->getDamager();
-			if($damager instanceof Player and $damager->isCreative()){
-				return;
-			}
-		}
 		foreach($this->getDrops() as $item){
 			$this->getLevel()->dropItem($this, $item);
         }
         $this->despawnFromAll();
     }
-
-
-    /*public function attack(EntityDamageEvent $source) : void{
-		parent::attack($source);
-		if(!$source->isCancelled()){
-			$pk = new ActorEventPacket();
-			$pk->entityRuntimeId = $this->id;
-			$pk->event = ActorEventPacket::HURT_ANIMATION;
-			Server::getInstance()->broadcastPacket($this->getViewers(), $pk);
-		}
-	}*/
 
 
     public function setLink(Entity $rider){

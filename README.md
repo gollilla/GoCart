@@ -1,2 +1,2 @@
-# GorCart
+# GoCart
 GoCart with MineCart

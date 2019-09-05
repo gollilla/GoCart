@@ -1,0 +1,9 @@
+name: GoCart
+main: soradore\gocart\GoCart
+version: 1.0
+api: [4.0.0, 3.5.2]
+load: POSTWORLD
+author: soradore
+description: 
+commands:
+

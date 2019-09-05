@@ -13,7 +13,6 @@ use pocketmine\event\player\PlayerJumpEvent;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\event\player\PlayerMoveEvent;
 use pocketmine\event\server\DataPacketReceiveEvent;
-use pocketmine\network\mcpe\protocol\RiderJumpPacket;
 use pocketmine\network\mcpe\protocol\types\EntityLink;
 use pocketmine\math\Vector3;
 use soradore\gocart\entity\Minecart;

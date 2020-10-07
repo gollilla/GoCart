@@ -55,7 +55,7 @@ class Minecart extends Vehicle{
 	    $rider->setDataFlag(self::DATA_FLAGS, self::DATA_FLAG_RIDING, true);
 	    $rider->getDataPropertyManager()->setVector3(Entity::DATA_RIDER_SEAT_POSITION, new Vector3(0, 1, 0));
 	    $pk = new SetActorLinkPacket();
-	    $pk->link = new EntityLink($this->getId(), $rider->getId(), EntityLink::TYPE_RIDER);
+	    $pk->link = new EntityLink($this->getId(), $rider->getId(), EntityLink::TYPE_RIDER, true, false);
             Server::getInstance()->broadcastPacket($this->getViewers(), $pk);
 	    $this->rider = $rider;
 	    return true;
@@ -63,7 +63,7 @@ class Minecart extends Vehicle{
             $rider->setDataFlag(self::DATA_FLAGS, self::DATA_FLAG_RIDING, false);
 	    $rider->getDataPropertyManager()->setVector3(Entity::DATA_RIDER_SEAT_POSITION, new Vector3(0, 0, 0));
 	    $pk = new SetActorLinkPacket();
-	    $pk->link = new EntityLink($this->getId(), $rider->getId(), EntityLink::TYPE_REMOVE);
+	    $pk->link = new EntityLink($this->getId(), $rider->getId(), EntityLink::TYPE_REMOVE, true, false);
             Server::getInstance()->broadcastPacket($this->getViewers(), $pk);
             $this->rider = null;
             
